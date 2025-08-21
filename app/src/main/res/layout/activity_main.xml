@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Home"
+            android:textSize="@dimen/page_title_size"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            />
+
+        <ImageButton
+            android:id="@+id/btnGallery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:src="@drawable/baseline_photo_library_24"
+            android:background="@null"
+            />
+
+        <ImageButton
+            android:id="@+id/btnNetwork"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:src="@drawable/baseline_phonelink_24"
+            android:background="@null"
+            />
+
+    </LinearLayout>
+</layout>

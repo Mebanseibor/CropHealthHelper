@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimens name="page_title_size">24dp</dimens>
+    <dimen name="page_title_size">24sp</dimen>
+    <dimen name="content_title_size">16sp</dimen>
+    <dimen name="content_subtitle_size">12sp</dimen>
+    <dimen name="app_padding_horizontal">8dp</dimen>
 </resources>
