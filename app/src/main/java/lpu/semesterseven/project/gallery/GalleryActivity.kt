@@ -1,7 +1,11 @@
 package lpu.semesterseven.project.gallery
 
 import android.os.Bundle
-import android.widget.LinearLayout
+import android.util.Log
+import android.widget.ImageButton
+import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -10,13 +14,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import lpu.semesterseven.project.R
 import lpu.semesterseven.project.databinding.ActivityGalleryBinding
+import lpu.semesterseven.project.network.NetworkObjects
+import lpu.semesterseven.project.network.SendImageService
+import okhttp3.MultipartBody
+import retrofit2.Call
+import retrofit2.http.Part
 
-class GalleryActivity: AppCompatActivity() {
+class GalleryActivity: AppCompatActivity(), SendImageService{
     // binding
     private lateinit var binding    : ActivityGalleryBinding
 
     // images
-    private lateinit var imagesRV   : RecyclerView
+    private lateinit var imagesRV       : RecyclerView
     private lateinit var imagesAdapter  : ImagesAdapter
     private var images  = mutableListOf(
         Image("Apple"),
@@ -24,11 +33,15 @@ class GalleryActivity: AppCompatActivity() {
         Image("Litchi", R.drawable.baseline_check_24)
     )
 
+    // views
+    private lateinit var btnSelectImg   : ImageButton
+
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_gallery)
 
         initImages()
+        initSelectImage()
     }
 
     private fun initImages(){
@@ -57,4 +70,28 @@ class GalleryActivity: AppCompatActivity() {
 
         itemTouchHelper.attachToRecyclerView(imagesRV)
     }
+
+    private fun initSelectImage(){
+        btnSelectImg    = binding.btnSelectImg
+
+        val pickMedia = registerForActivityResult(PickVisualMedia()){ uri ->
+            if(uri != null){
+                Log.d("Gallery", "Selected URI: $uri")
+                Toast.makeText(this, "Selected URI:\n$uri", Toast.LENGTH_SHORT).show()
+
+                var mpBody = createMultiPartBody(this, uri)
+                if(mpBody == null) return@registerForActivityResult
+
+                var r= uploadImage(mpBody)
+                getResponseFromUploadingImage(this, r)
+            }
+            else{ Log.d("", "No Media was selected (URI was null)") }
+        }
+
+        btnSelectImg.setOnClickListener{
+            pickMedia.launch(PickVisualMediaRequest(PickVisualMedia.ImageOnly))
+        }
+    }
+
+    override fun uploadImage(@Part image: MultipartBody.Part): Call<String> = NetworkObjects.sendImageService.uploadImage(image)
 }

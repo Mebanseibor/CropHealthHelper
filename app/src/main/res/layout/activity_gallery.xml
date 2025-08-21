@@ -24,5 +24,16 @@
             android:layout_weight="1"
         />
 
+        <ImageButton
+            android:id="@+id/btnSelectImg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:layout_marginHorizontal="20dp"
+            android:src="@drawable/baseline_highlight_alt_24"
+            android:background="@color/primary_color"
+            android:layout_gravity="center"
+            />
+
     </LinearLayout>
 </layout>
