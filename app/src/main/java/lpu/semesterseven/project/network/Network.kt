@@ -19,7 +19,7 @@ private var retrofit    : Retrofit = Retrofit.Builder()
     .build()
 
 interface ServerAPIService {
-    @GET("objects")
+    @GET("pulse")
     fun getResult(): Call<String>
 }
 

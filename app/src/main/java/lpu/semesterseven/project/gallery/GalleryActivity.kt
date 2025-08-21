@@ -3,7 +3,6 @@ package lpu.semesterseven.project.gallery
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
-import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
 import androidx.appcompat.app.AppCompatActivity
@@ -27,11 +26,7 @@ class GalleryActivity: AppCompatActivity(), SendImageService{
     // images
     private lateinit var imagesRV       : RecyclerView
     private lateinit var imagesAdapter  : ImagesAdapter
-    private var images  = mutableListOf(
-        Image("Apple"),
-        Image("Banana"),
-        Image("Litchi", R.drawable.baseline_check_24)
-    )
+    private var images                  : MutableList<Image>    = mutableListOf()
 
     // views
     private lateinit var btnSelectImg   : ImageButton
@@ -61,7 +56,9 @@ class GalleryActivity: AppCompatActivity(), SendImageService{
                 val position    : Int   = viewHolder.adapterPosition
                 val deletedItem : Image = images[position]
 
-                Snackbar.make(imagesRV, "Delete ${deletedItem.title}?", Snackbar.LENGTH_INDEFINITE).setAction("Undo"){
+                images.removeAt(position)
+                imagesAdapter.notifyItemRemoved(position)
+                Snackbar.make(imagesRV, "Deleted ${deletedItem.title}", Snackbar.LENGTH_SHORT).setAction("Undo"){
                     images.add(position, deletedItem)
                     imagesAdapter.notifyItemInserted(position)
                 }.show()
@@ -77,13 +74,21 @@ class GalleryActivity: AppCompatActivity(), SendImageService{
         val pickMedia = registerForActivityResult(PickVisualMedia()){ uri ->
             if(uri != null){
                 Log.d("Gallery", "Selected URI: $uri")
-                Toast.makeText(this, "Selected URI:\n$uri", Toast.LENGTH_SHORT).show()
-
                 var mpBody = createMultiPartBody(this, uri)
                 if(mpBody == null) return@registerForActivityResult
 
                 var r= uploadImage(mpBody)
-                getResponseFromUploadingImage(this, r)
+                getResponseFromUploadingImage(this, r){ result ->
+                    Log.d("", result)
+                    val processedList = parseJsonToDataClass(result)
+
+                    if(processedList.isEmpty()) return@getResponseFromUploadingImage
+
+                    var firstResult = processedList.first()
+                    images.add(Image(firstResult.label, firstResult.score))
+                    imagesAdapter       = ImagesAdapter(this, images)
+                    imagesRV.adapter    = imagesAdapter
+                }
             }
             else{ Log.d("", "No Media was selected (URI was null)") }
         }

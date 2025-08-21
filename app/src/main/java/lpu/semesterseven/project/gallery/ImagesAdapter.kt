@@ -14,6 +14,7 @@ class ImagesAdapter(private var context: Context, private var images: List<Image
     inner class ImagesViewHolder(var itemView: View): RecyclerView.ViewHolder(itemView){
         var image   : ImageView = itemView.findViewById(R.id.image)
         var title   : TextView  = itemView.findViewById(R.id.title)
+        var score   : TextView  = itemView.findViewById(R.id.score)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImagesViewHolder{
@@ -26,6 +27,7 @@ class ImagesAdapter(private var context: Context, private var images: List<Image
 
         holder.title.text   = image.title
         holder.image.setImageResource(image.image)
+        holder.score.text   = (image.score*100.00F).toString().substringBeforeLast('.')+"%"
 
         holder.itemView.setOnClickListener{
             Toast.makeText(context, "Selected ${image.title}", Toast.LENGTH_SHORT).show()
