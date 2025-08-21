@@ -21,12 +21,14 @@ class EstablishConnection(override var context: Context): NetworkBaseConnection(
     private var connectionAttemptLatch  : CountDownLatch = CountDownLatch(1)
 
     // state tracker
-    private var isConnectionEstablished : Boolean = false
+    private var isConnectionEstablished : Boolean   = false
+    private var attemptLimits           : Int       = 5
+    private var attemptCounts           : Int       = 1
 
     override fun run(){
         try{
             if(!attemptConnectionToServer()){
-                showError("Cannot connect to server")
+                showError("Internet issue")
                 return
             }
         } catch(e: Exception){
@@ -43,9 +45,19 @@ class EstablishConnection(override var context: Context): NetworkBaseConnection(
     }
 
     private fun attemptConnectionToServer(): Boolean{
-        showLoading()
-
         var call = getResult()
+
+        var tick = 0
+
+        Thread {
+            try{
+                while (connectionAttemptLatch.count != 0L) {
+                    showLoading(tick++)
+                    sleep(200)
+                }
+            } catch(e: Exception){}
+        }.start()
+
         call.enqueue(object: Callback<String>{
             override fun onResponse( call: Call<String?>, response: Response<String?> ){
                 if (response.isSuccessful) {
@@ -63,10 +75,17 @@ class EstablishConnection(override var context: Context): NetworkBaseConnection(
             override fun onFailure(call: Call<String?>, t: Throwable) {
                 showError("Can't connect to server")
                 isConnectionEstablished = false
+                connectionAttemptLatch.countDown()
             }
         })
         connectionAttemptLatch.await()
 
+        while(!isConnectionEstablished && attemptCounts<attemptLimits){
+            attemptCounts++
+            sleep(2000)
+            return attemptConnectionToServer()
+        }
+        sleep(20)
         return isConnectionEstablished
     }
 
@@ -81,25 +100,20 @@ class EstablishConnection(override var context: Context): NetworkBaseConnection(
 
     private fun showError(errMsg: String){
         mainLooper.post{
-            resultText.text = errMsg
+            resultText.text = "${getAttemptsString()}\n$errMsg"
 
-            resultImage.setImageResource(R.drawable.baseline_error)
-            resultImage.visibility  = View.VISIBLE
+            if(attemptCounts==attemptLimits) {
+                resultImage.setImageResource(R.drawable.baseline_error)
+                resultImage.visibility = View.VISIBLE
 
-            progressBar.visibility  = View.GONE
+                progressBar.visibility = View.GONE
+            }
         }
     }
 
-    private fun showLoading(){
-        for(i in 0..24){
-            sleep(200)
-            if(i%6==0) {
-                mainLooper.post { resultText.text = "Establishing mock connection" }
-            }
-            else{
-                mainLooper.post{ resultText.text = resultText.text.toString() + "." }
-            }
-        }
+    private fun showLoading(tick: Int){
+        if(tick%6==0)   { mainLooper.post { resultText.text = "${getAttemptsString()}\nEstablishing mock connection" } }
+        else            { mainLooper.post { resultText.text = resultText.text.toString() + "." } }
     }
 
     private fun showResult(resultMsg: String){
@@ -110,4 +124,6 @@ class EstablishConnection(override var context: Context): NetworkBaseConnection(
     }
 
     override fun getResult(): Call<String> = NetworkObjects.diseaseAPIService.getResult()
+
+    private fun getAttemptsString(): String = "(${attemptCounts}/$attemptLimits connection attempts performed)"
 }

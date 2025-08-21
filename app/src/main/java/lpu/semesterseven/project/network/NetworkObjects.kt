@@ -7,7 +7,7 @@ import retrofit2.http.GET
 
 // server
 private val SERVER_PORT = "8000"
-private val SERVER_URL  = "https://api.restful-api.dev/"
+private val SERVER_URL  = "https://well-bass-above.ngrok-free.app/"
 
 private var retrofit    : Retrofit = Retrofit.Builder()
     .addConverterFactory(ScalarsConverterFactory.create())
