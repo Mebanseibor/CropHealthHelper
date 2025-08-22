@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Basic colors -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="primary_color">#FF29ffc6</color>
+    <!-- Primary colors -->
+    <color name="primary_color">#FF29FFC6</color>
+    <color name="primary_dark_color">#FF00CFA3</color>
+    <color name="primary_light_color">#FF7EFFE7</color>
+    <color name="on_primary">#FF000000</color>
+
+    <!-- Secondary colors -->
+    <color name="secondary_color">#FF03DAC6</color>
+    <color name="secondary_dark_color">#FF018786</color>
+    <color name="secondary_light_color">#FF66FFF9</color>
+    <color name="on_secondary">#FF000000</color>
+
+    <!-- Background and surface -->
+    <color name="background_color">#FFFFFFFF</color>
+    <color name="on_background_color">#FF000000</color>
+    <color name="surface_color">#FFFFFFFF</color>
+    <color name="on_surface_color">#FF000000</color>
+
+    <!-- Status colors -->
+    <color name="color_success_green">#FF4CAF50</color> <!-- Good/success -->
+    <color name="color_warning_yellow">#FFFFC107</color> <!-- Warning -->
+    <color name="color_error_red">#FFF44336</color> <!-- Error/bad -->
+    <color name="color_info_blue">#FF2196F3</color> <!-- Info/neutral -->
+    <color name="color_alert_orange">#FFFF9800</color> <!-- Alert/caution -->
+
+    <!-- Other useful colors -->
+    <color name="surface_variant_color">#FFE0E0E0</color>
+    <color name="outline_color">#FF757575</color>
+    <color name="shadow_color">#FF000000</color>
 </resources>
