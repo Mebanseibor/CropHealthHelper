@@ -65,6 +65,4 @@ fun getFileNameFromUri(context: Context, uri: Uri): String {
     return fileName
 }
 
-fun parseJsonToDataClass(jsonString: String): List<ProcessedImageJSON> {
-    return Json.decodeFromString(jsonString)
-}
+fun parseProcessedImage(jsonString: String) : List<ProcessedImageJSON>  = Json.decodeFromString(jsonString)

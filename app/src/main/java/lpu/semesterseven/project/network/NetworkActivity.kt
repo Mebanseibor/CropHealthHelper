@@ -1,6 +1,7 @@
 package lpu.semesterseven.project.network
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -21,7 +22,9 @@ class NetworkActivity: AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_network)
 
         initViews()
-        EstablishConnection(this).start()
+        EstablishConnection(this, true){ isServerAlive->
+            Log.d("", "isServerAlive: $isServerAlive")
+        }.start()
     }
 
     private fun initViews(){

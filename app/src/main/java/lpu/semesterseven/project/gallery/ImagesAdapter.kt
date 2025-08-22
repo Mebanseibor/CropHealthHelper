@@ -31,10 +31,11 @@ class ImagesAdapter(private var context: Context, private var images: List<Image
         holder.image.setImageResource(image.image)
 
         var color: Int
-        if      (scorePercenageValue>=85)  color = R.color.color_success_green
-        else if (scorePercenageValue>=75)  color = R.color.color_warning_yellow
-        else if (scorePercenageValue>=40)  color = R.color.color_alert_orange
-        else                        color = R.color.color_error_red
+        if      (scorePercenageValue>=85)   color = R.color.confidence_vhigh
+        else if (scorePercenageValue>=75)   color = R.color.confidence_high
+        else if (scorePercenageValue>=40)   color = R.color.confidence_medium
+        else if (scorePercenageValue>=25)   color = R.color.confidence_low
+        else                                color = R.color.confidence_vlow
 
         holder.score.setTextColor(context.getResources().getColor(color))
 

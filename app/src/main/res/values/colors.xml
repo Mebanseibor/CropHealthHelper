@@ -1,36 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Basic colors -->
+    <!-- Core Palette -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- Primary colors -->
-    <color name="primary_color">#FF29FFC6</color>
-    <color name="primary_dark_color">#FF00CFA3</color>
-    <color name="primary_light_color">#FF7EFFE7</color>
-    <color name="on_primary">#FF000000</color>
+    <!-- Primary Branding Colors -->
+    <color name="primary">#FF4CAF50</color> <!-- Healthy crop/primary theme -->
+    <color name="primary_dark">#FF388E3C</color>
+    <color name="primary_light">#FFA5D6A7</color>
+    <color name="on_primary">#FFFFFFFF</color>
 
-    <!-- Secondary colors -->
-    <color name="secondary_color">#FF03DAC6</color>
-    <color name="secondary_dark_color">#FF018786</color>
-    <color name="secondary_light_color">#FF66FFF9</color>
-    <color name="on_secondary">#FF000000</color>
+    <!-- Secondary Accent Colors -->
+    <color name="secondary">#FF795548</color> <!-- Soil/fertilizer -->
+    <color name="secondary_dark">#FF5D4037</color>
+    <color name="secondary_light">#FFD7CCC8</color>
+    <color name="on_secondary">#FFFFFFFF</color>
 
-    <!-- Background and surface -->
-    <color name="background_color">#FFFFFFFF</color>
-    <color name="on_background_color">#FF000000</color>
-    <color name="surface_color">#FFFFFFFF</color>
-    <color name="on_surface_color">#FF000000</color>
+    <!-- Background and Surface -->
+    <color name="background">#FFF1F8E9</color> <!-- Fresh neutral background -->
+    <color name="on_background">#FF1B5E20</color>
+    <color name="surface_card">#FFFFFFFF</color> <!-- Card surfaces -->
+    <color name="on_surface_card">#FF212121</color>
 
-    <!-- Status colors -->
-    <color name="color_success_green">#FF4CAF50</color> <!-- Good/success -->
-    <color name="color_warning_yellow">#FFFFC107</color> <!-- Warning -->
-    <color name="color_error_red">#FFF44336</color> <!-- Error/bad -->
-    <color name="color_info_blue">#FF2196F3</color> <!-- Info/neutral -->
-    <color name="color_alert_orange">#FFFF9800</color> <!-- Alert/caution -->
+    <!-- Status Colors -->
+    <color name="status_success">#FF4CAF50</color> <!-- Healthy crop -->
+    <color name="status_warning">#FFFFC107</color> <!-- Drought risk -->
+    <color name="status_error">#FFD32F2F</color> <!-- Climate issue/disease -->
+    <color name="status_info">#FF2196F3</color> <!-- Weather info -->
+    <color name="status_alert">#FFFF9800</color> <!-- Pest alert -->
 
-    <!-- Other useful colors -->
-    <color name="surface_variant_color">#FFE0E0E0</color>
-    <color name="outline_color">#FF757575</color>
-    <color name="shadow_color">#FF000000</color>
+    <!-- Neutral Tones (Farm/Crop Context) -->
+    <color name="neutral_1">#FF8D6E63</color> <!-- Medium soil tone -->
+    <color name="neutral_2">#FF90CAF9</color> <!-- Clear sky -->
+    <color name="neutral_3">#FFB0BEC5</color> <!-- Cloudy sky -->
+    <color name="neutral_4">#FF0288D1</color> <!-- Irrigation/water -->
+    <color name="neutral_5">#FF66BB6A</color> <!-- Land/field background -->
+
+    <!-- Extended Agriculture Specific Colors -->
+    <color name="crop_healthy">#FF2E7D32</color> <!-- Lush crops -->
+    <color name="crop_dry">#FFF9A825</color> <!-- Dry field -->
+    <color name="crop_wilt">#FF6D4C41</color> <!-- Weak plants -->
+    <color name="soil_moist">#FF3E2723</color> <!-- Wet/dark soil -->
+    <color name="soil_dry">#FFA1887F</color> <!-- Dry soil -->
+    <color name="rainfall">#FF0277BD</color> <!-- Rain intensity -->
+    <color name="pest_alert">#FFC62828</color> <!-- Pest infestation -->
+    <color name="fertilizer">#FF8E24AA</color> <!-- Fertilizer applied -->
+    <color name="sunlight">#FFFFEB3B</color> <!-- Sunny day -->
+    <color name="shadow_neutral">#FF000000</color>
+
+    <!-- Outline/Variants -->
+    <color name="surface_variant">#FFE8F5E9</color>
+    <color name="outline_color">#FF9E9E9E</color>
+
+    <!-- Confidence Levels -->
+    <color name="confidence_vhigh">#FF2E7D32</color>   <!-- Very High = Deep Green (Highly positive) -->
+    <color name="confidence_high">#FF66BB6A</color>   <!-- High = Light Green -->
+    <color name="confidence_medium">#FFFBC02D</color> <!-- Medium = Warning Yellow -->
+    <color name="confidence_low">#FFFF9800</color>    <!-- Low = Orange (Caution) -->
+    <color name="confidence_vlow">#FFD32F2F</color>   <!-- Very Low = Strong Red (Negative) -->
+
 </resources>

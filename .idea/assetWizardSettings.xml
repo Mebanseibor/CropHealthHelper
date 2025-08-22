@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/highlight_alt/baseline_highlight_alt_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/signal_wifi_bad/baseline_signal_wifi_bad_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,7 +28,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="baseline_highlight_alt_24" />
+                            <entry key="outputName" value="baseline_signal_wifi_bad_24" />
                             <entry key="sourceFile" value="D:\AndroidStudio\LPU\SemesterSevenProject" />
                           </map>
                         </option>

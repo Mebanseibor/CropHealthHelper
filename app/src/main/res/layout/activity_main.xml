@@ -19,13 +19,40 @@
             android:textAlignment="center"
             />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Headlines"
+            android:textSize="@dimen/content_title_size"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="8dp"
+            >
+
+            <TextView
+                android:id="@+id/headlines"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Emergency news"
+                android:textSize="@dimen/content_subtitle_size"
+                android:textStyle="italic"
+                />
+
+        </HorizontalScrollView>
+
         <ImageButton
             android:id="@+id/btnGallery"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
             android:src="@drawable/baseline_photo_library_24"
-            android:background="@null"
+            app:tint="@color/white"
+            android:backgroundTint="@color/primary"
             />
 
         <ImageButton
@@ -34,7 +61,8 @@
             android:layout_height="wrap_content"
             android:padding="20dp"
             android:src="@drawable/baseline_phonelink_24"
-            android:background="@null"
+            app:tint="@color/white"
+            android:backgroundTint="@color/primary"
             />
 
     </LinearLayout>

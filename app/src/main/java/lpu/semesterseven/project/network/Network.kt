@@ -29,7 +29,13 @@ interface SendImageService {
     fun uploadImage(@Part image: MultipartBody.Part): Call<String>
 }
 
+interface EmergencyInfoService {
+    @GET("emergencyinfo")
+    fun fetchEmergencyInfo(): Call<String>
+}
+
 object NetworkObjects {
-    val diseaseAPIService   : ServerAPIService = retrofit.create(ServerAPIService::class.java)
-    val sendImageService    : SendImageService = retrofit.create(SendImageService::class.java)
+    val diseaseAPIService       : ServerAPIService      = retrofit.create(ServerAPIService::class.java)
+    val sendImageService        : SendImageService      = retrofit.create(SendImageService::class.java)
+    val emergencyInfoService    : EmergencyInfoService  = retrofit.create(EmergencyInfoService::class.java)
 }

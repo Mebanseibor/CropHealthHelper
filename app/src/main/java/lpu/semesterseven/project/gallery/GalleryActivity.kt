@@ -3,6 +3,7 @@ package lpu.semesterseven.project.gallery
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
 import androidx.appcompat.app.AppCompatActivity
@@ -13,11 +14,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import lpu.semesterseven.project.R
 import lpu.semesterseven.project.databinding.ActivityGalleryBinding
+import lpu.semesterseven.project.network.EstablishConnection
 import lpu.semesterseven.project.network.NetworkObjects
 import lpu.semesterseven.project.network.SendImageService
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.Part
+import java.lang.Thread.sleep
+import java.util.concurrent.CountDownLatch
 
 class GalleryActivity: AppCompatActivity(), SendImageService{
     // binding
@@ -37,6 +41,7 @@ class GalleryActivity: AppCompatActivity(), SendImageService{
 
         initImages()
         initSelectImage()
+        performPeriodicNetworkChecks()
     }
 
     private fun initImages(){
@@ -80,7 +85,7 @@ class GalleryActivity: AppCompatActivity(), SendImageService{
                 var r= uploadImage(mpBody)
                 getResponseFromUploadingImage(this, r){ result ->
                     Log.d("", result)
-                    val processedList = parseJsonToDataClass(result)
+                    val processedList = parseProcessedImage(result)
 
                     if(processedList.isEmpty()) return@getResponseFromUploadingImage
 
@@ -96,6 +101,29 @@ class GalleryActivity: AppCompatActivity(), SendImageService{
         btnSelectImg.setOnClickListener{
             pickMedia.launch(PickVisualMediaRequest(PickVisualMedia.ImageOnly))
         }
+    }
+
+    private fun performPeriodicNetworkChecks(){
+        Thread{
+            while(true) {
+                var checkPerformedLatch: CountDownLatch = CountDownLatch(1)
+                EstablishConnection(this) { isServerAlive ->
+                    var imgConnectivityStatus: ImageView = binding.connectivityStatus
+                    if (isServerAlive) {
+                        imgConnectivityStatus.setImageResource(R.drawable.baseline_network_wifi_24)
+                        imgConnectivityStatus.imageTintList =
+                            getColorStateList(R.color.status_success)
+                    } else {
+                        imgConnectivityStatus.setImageResource(R.drawable.baseline_signal_wifi_bad_24)
+                        imgConnectivityStatus.imageTintList =
+                            getColorStateList(R.color.status_error)
+                    }
+                    checkPerformedLatch.countDown()
+                }.start()
+                checkPerformedLatch.await()
+                sleep(5000)
+            }
+        }.start()
     }
 
     override fun uploadImage(@Part image: MultipartBody.Part): Call<String> = NetworkObjects.sendImageService.uploadImage(image)

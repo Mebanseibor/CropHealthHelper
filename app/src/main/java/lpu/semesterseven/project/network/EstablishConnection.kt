@@ -12,7 +12,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.concurrent.CountDownLatch
 
-class EstablishConnection(override var context: Context): NetworkBaseConnection(context){
+class EstablishConnection(override var context: Context, private val verbose: Boolean=false, private var result: (Boolean)->Unit): NetworkBaseConnection(context){
     // views
     private lateinit var resultText     : TextView
     private lateinit var resultImage    : ImageView
@@ -29,8 +29,10 @@ class EstablishConnection(override var context: Context): NetworkBaseConnection(
         try{
             if(!attemptConnectionToServer()){
                 showError("Internet issue")
+                result(false)
                 return
             }
+            result(true)
         } catch(e: Exception){
             Log.d("EstablishConnection", "Encountered an error")
             e.printStackTrace()
@@ -39,9 +41,11 @@ class EstablishConnection(override var context: Context): NetworkBaseConnection(
 
     override fun start(){
         super.start()
-        resultText  = activity.findViewById<TextView>(R.id.result)
-        resultImage = activity.findViewById<ImageView>(R.id.resultImage)
-        progressBar = activity.findViewById<ProgressBar>(R.id.progressBar)
+        if(verbose) {
+            resultText  = activity.findViewById<TextView>(R.id.result)
+            resultImage = activity.findViewById<ImageView>(R.id.resultImage)
+            progressBar = activity.findViewById<ProgressBar>(R.id.progressBar)
+        }
     }
 
     private fun attemptConnectionToServer(): Boolean{
@@ -51,7 +55,7 @@ class EstablishConnection(override var context: Context): NetworkBaseConnection(
 
         Thread {
             try{
-                while (connectionAttemptLatch.count != 0L) {
+                while (verbose && connectionAttemptLatch.count != 0L) {
                     showLoading(tick++)
                     sleep(200)
                 }
@@ -91,22 +95,26 @@ class EstablishConnection(override var context: Context): NetworkBaseConnection(
 
     private fun showSuccess(){
         mainLooper.post{
-            resultImage.setImageResource(R.drawable.baseline_check_24)
-            resultImage.visibility  = View.VISIBLE
+            if(verbose) {
+                resultImage.setImageResource(R.drawable.baseline_check_24)
+                resultImage.visibility = View.VISIBLE
 
-            progressBar.visibility  = View.GONE
+                progressBar.visibility = View.GONE
+            }
         }
     }
 
     private fun showError(errMsg: String){
         mainLooper.post{
-            resultText.text = "${getAttemptsString()}\n$errMsg"
+            if(verbose) {
+                resultText.text = "${getAttemptsString()}\n$errMsg"
 
-            if(attemptCounts==attemptLimits) {
-                resultImage.setImageResource(R.drawable.baseline_error)
-                resultImage.visibility = View.VISIBLE
+                if (attemptCounts == attemptLimits) {
+                    resultImage.setImageResource(R.drawable.baseline_error)
+                    resultImage.visibility = View.VISIBLE
 
-                progressBar.visibility = View.GONE
+                    progressBar.visibility = View.GONE
+                }
             }
         }
     }
@@ -118,8 +126,10 @@ class EstablishConnection(override var context: Context): NetworkBaseConnection(
 
     private fun showResult(resultMsg: String){
         mainLooper.post {
-            resultText.text = resultMsg
-            showSuccess()
+            if(verbose) {
+                resultText.text = resultMsg
+                showSuccess()
+            }
         }
     }
 
