@@ -9,12 +9,16 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FetchEmergencyNews(private val context: Context, private val result: (Boolean, String)->Unit): Thread(), EmergencyInfoService{
+class FetchEmergencyNews(private val context: Context, private val result: (Boolean, String, String)->Unit): Thread(), EmergencyInfoService{
     // looper
     private val mainLooper  = Handler(Looper.getMainLooper())
 
     // activity
     private lateinit var activity   : Activity
+
+    // messages
+    private var news    = "Unknown error while fetching emergency news"
+    private var errMsg  = ""
 
     override fun run(){
         try{
@@ -22,17 +26,19 @@ class FetchEmergencyNews(private val context: Context, private val result: (Bool
             call.enqueue(object: Callback<String>{
                 override fun onResponse( call: Call<String?>, response: Response<String?>) {
                     if (response.isSuccessful) {
-                        if(response.body()==null) return
-                        result(true, response.body()!!)
+                        if (response.body() == null){
+                            result(false, news, "Server error: (No response body received")
+                            return
+                        }
+                        result(true, response.body()!!, errMsg)
                     } else{
-                        result(false, "Server Error")
+                        result(false, news, "Server Error: (Server may not be alive)")
                     }
                 }
 
                 override fun onFailure(call: Call<String?>, t: Throwable) {
-                    result(false, "Can't connect to server")
+                    result(false, news, "Can't connect to server: (Your internet connectivity may be off)")
                 }
-
             })
         } catch(e: Exception){
             Log.d("FetchEmergencyNews", "Caught an exception")

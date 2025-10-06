@@ -59,4 +59,20 @@
     <color name="confidence_low">#FFFF9800</color>    <!-- Low = Orange (Caution) -->
     <color name="confidence_vlow">#FFD32F2F</color>   <!-- Very Low = Strong Red (Negative) -->
 
+    <!-- Info Levels -->
+    <color name="info_neutral">#FF000000</color>
+    <color name="info_good">#FF2E7D32</color>
+    <color name="info_normal">#FF66BB6A</color>
+    <color name="info_warning">#FFFBC02D</color>
+    <color name="info_important">#FFFF9800</color>
+    <color name="info_critical">#FFD32F2F</color>
+
+    <!-- Added Text Colors -->
+    <color name="text_primary">#FF1B5E20</color> <!-- Dark green for main text (on background) -->
+    <color name="text_secondary">#FF5D4037</color> <!-- Dark brown for secondary text -->
+    <color name="text_hint">#FFB0BEC5</color> <!-- Light grayish blue for hint text -->
+    <color name="text_disabled">#FF9E9E9E</color> <!-- Medium gray for disabled text -->
+    <color name="text_on_primary">#FFFFFFFF</color> <!-- White text for primary colored backgrounds -->
+    <color name="text_on_secondary">#FFFFFFFF</color> <!-- White text for secondary colored backgrounds -->
+
 </resources>

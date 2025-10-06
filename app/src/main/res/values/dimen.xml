@@ -4,4 +4,6 @@
     <dimen name="content_title_size">16sp</dimen>
     <dimen name="content_subtitle_size">12sp</dimen>
     <dimen name="app_padding_horizontal">8dp</dimen>
+    <dimen name="headline_icon_size">20dp</dimen>
+    <dimen name="footer_title_size">8sp</dimen>
 </resources>

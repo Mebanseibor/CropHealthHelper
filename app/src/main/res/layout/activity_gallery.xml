@@ -8,13 +8,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <lpu.semesterseven.project.components.toolbar.GalleryToolBar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Gallery"
-            android:textSize="@dimen/page_title_size"
-            android:textStyle="bold"
-            android:textAlignment="center"
             />
 
         <LinearLayout
@@ -44,12 +41,28 @@
 
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/images"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-        />
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/images"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+            />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/loadingIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@raw/loading_indicator"
+                android:visibility="invisible"
+                android:background="#80cccccc"
+                android:padding="120dp"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageButton
             android:id="@+id/btnSelectImg"
@@ -61,6 +74,7 @@
             android:background="@color/primary"
             app:tint="@color/white"
             android:layout_gravity="center"
+            android:layout_marginVertical="16dp"
             />
 
     </LinearLayout>

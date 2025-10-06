@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingVertical="8dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Headlines"
+            android:textSize="@dimen/content_title_size"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/headlinesRV"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:scrollIndicators="right"
+            />
+
+        <TextView
+            android:id="@+id/headlinesMsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Message"
+            android:textSize="@dimen/content_subtitle_size"
+            android:textStyle="italic"
+            android:textAlignment="center"
+            android:visibility="gone"
+            />
+
+    </LinearLayout>
+</layout>

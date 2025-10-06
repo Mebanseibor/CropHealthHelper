@@ -11,12 +11,8 @@ import retrofit2.http.Part
 
 // server
 private val SERVER_PORT = "8000"
-private val SERVER_URL  = "https://well-bass-above.ngrok-free.app/"
-
-private var retrofit    : Retrofit = Retrofit.Builder()
-    .addConverterFactory(ScalarsConverterFactory.create())
-    .baseUrl(SERVER_URL)
-    .build()
+// private val SERVER_URL  = "http://127.0.0.1:$SERVER_PORT/"
+private val SERVER_URL  = "https://lexicostatistic-ectosarcous-renita.ngrok-free.dev/"
 
 interface ServerAPIService {
     @GET("pulse")
@@ -30,11 +26,16 @@ interface SendImageService {
 }
 
 interface EmergencyInfoService {
-    @GET("emergencyinfo")
+    @GET("info")
     fun fetchEmergencyInfo(): Call<String>
 }
 
 object NetworkObjects {
+    val retrofit    : Retrofit = Retrofit.Builder()
+        .addConverterFactory(ScalarsConverterFactory.create())
+        .baseUrl(SERVER_URL)
+        .build()
+
     val diseaseAPIService       : ServerAPIService      = retrofit.create(ServerAPIService::class.java)
     val sendImageService        : SendImageService      = retrofit.create(SendImageService::class.java)
     val emergencyInfoService    : EmergencyInfoService  = retrofit.create(EmergencyInfoService::class.java)
