@@ -16,6 +16,7 @@ import lpu.semesterseven.project.databinding.ActivityMainBinding
 import lpu.semesterseven.project.gallery.GalleryActivity
 import lpu.semesterseven.project.helplines.HelplinesActivity
 import lpu.semesterseven.project.serverinfo.headlines.HeadlinesFragment
+import lpu.semesterseven.project.notes.NotesActivity
 import lpu.semesterseven.project.test.TestActivity
 import lpu.semesterseven.project.testmedia.MediaPlayerActivity
 import lpu.semesterseven.project.testtwo.TestTwoActivity
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnTest        : Button
     private lateinit var btnMusicPlayer : Button
     private lateinit var btnDownloader  : Button
+    private lateinit var btnNotes       : ImageButton
 
     // views
     private lateinit var headlinesLayout: FrameLayout
@@ -56,12 +58,14 @@ class MainActivity : AppCompatActivity() {
         btnMusicPlayer  = binding.btnMusicPlayer
         btnDownloader   = binding.btnDownloader
         btnHelpLines    = binding.btnHelpLines
+        btnNotes        = binding.btnNotes
 
         btnGallery.setOnClickListener       { startActivity(Intent(this, GalleryActivity::class.java)) }
         btnHelpLines.setOnClickListener     { startActivity(Intent(this, HelplinesActivity::class.java)) }
         btnTest.setOnClickListener          { startActivity(Intent(this, TestActivity::class.java)) }
         btnMusicPlayer.setOnClickListener   { startActivity(Intent(this, MediaPlayerActivity::class.java)) }
         btnDownloader.setOnClickListener    { startActivity(Intent(this, TestTwoActivity::class.java)) }
+        btnNotes.setOnClickListener         { startActivity(Intent(this, NotesActivity::class.java)) }
 
         btnTest.visibility          = View.GONE
         btnMusicPlayer.visibility   = View.GONE

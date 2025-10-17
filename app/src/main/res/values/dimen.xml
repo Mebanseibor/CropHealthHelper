@@ -6,4 +6,5 @@
     <dimen name="app_padding_horizontal">8dp</dimen>
     <dimen name="headline_icon_size">20dp</dimen>
     <dimen name="footer_title_size">8sp</dimen>
+    <dimen name="action_button_size">40dp</dimen>
 </resources>

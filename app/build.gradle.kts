@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
+
+    alias(libs.plugins.ksp)
+    kotlin("kapt")
 }
 
 android {
@@ -57,6 +60,13 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata:2.9.3")
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.17")
+
+    implementation("androidx.room:room-runtime:2.8.2")
+    implementation("androidx.room:room-ktx:2.8.2")
+    ksp("androidx.room:room-compiler:2.5.0")
+
+    implementation("androidx.fragment:fragment-ktx:1.4.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

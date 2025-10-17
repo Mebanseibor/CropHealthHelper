@@ -64,18 +64,40 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ImageButton
-            android:id="@+id/btnSelectImg"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:layout_marginHorizontal="20dp"
-            android:src="@drawable/baseline_highlight_alt_24"
-            android:background="@color/primary"
-            app:tint="@color/white"
-            android:layout_gravity="center"
-            android:layout_marginVertical="16dp"
-            />
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnSelectImg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:padding="16dp"
+                android:layout_marginHorizontal="20dp"
+                android:src="@drawable/baseline_highlight_alt_24"
+                app:tint="@color/white"
+                android:layout_gravity="center"
+                android:layout_marginVertical="16dp"
+                />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnClickImg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:padding="16dp"
+                android:layout_marginHorizontal="20dp"
+                android:src="@drawable/baseline_camera_24"
+                app:tint="@color/white"
+                android:layout_gravity="center"
+                android:layout_marginVertical="16dp"
+                />
+
+        </LinearLayout>
 
     </LinearLayout>
 </layout>

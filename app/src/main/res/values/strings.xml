@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Plant Disease Evaluator</string>
     <string name="app_slogan">To Help Farmers with plant Diagnosis</string>
-    <string name="attribute_developers">Developed by: Mebanseibor, Harsh and Sibiston</string>
-    <string name="attribute_tech_stack">Made in Android Studio</string>
+    <string name="attribute_developers">Developed by: Mebanseibor</string>
+
+    <string name="notes_page_title">Crop Notes</string>
 </resources>
