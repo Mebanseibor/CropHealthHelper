@@ -13,7 +13,6 @@
             android:layout_height="wrap_content"
             />
 
-
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -21,44 +20,56 @@
             android:paddingHorizontal="@dimen/app_padding_horizontal"
             >
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Title"
-                android:textSize="@dimen/content_title_size"
-                android:textStyle="bold"
-                />
-
-            <EditText
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Title"
-                android:textSize="@dimen/content_title_size"
-                android:inputType="textCapSentences|textMultiLine"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Description"
-                android:textSize="@dimen/content_title_size"
-                android:textStyle="bold"
-                />
-
-            <EditText
-                android:id="@+id/desc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Description"
-                android:textSize="@dimen/content_title_size"
-                />
-
-            <View
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                />
+                app:cardCornerRadius="16dp"
+                app:cardUseCompatPadding="true"
+                >
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/app_padding_horizontal"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Title"
+                        android:textSize="@dimen/content_title_size"
+                        android:textStyle="bold"
+                        />
+
+                    <EditText
+                        android:id="@+id/title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Title"
+                        android:textSize="@dimen/content_title_size"
+                        android:inputType="textCapSentences|textMultiLine"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Description"
+                        android:textSize="@dimen/content_title_size"
+                        android:textStyle="bold"
+                        />
+
+                    <EditText
+                        android:id="@+id/desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Description"
+                        android:textSize="@dimen/content_title_size"
+                        />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
             <ImageButton
                 android:id="@+id/btnSubmit"

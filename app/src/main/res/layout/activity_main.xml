@@ -16,6 +16,18 @@
             android:layout_height="wrap_content"
             />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/homepage_purpose"
+            android:textSize="@dimen/content_title_size"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:background="@color/primary"
+            android:padding="@dimen/page_title_padding"
+            />
+
         <FrameLayout
             android:id="@+id/headlinesFrameLayout"
             android:layout_width="match_parent"

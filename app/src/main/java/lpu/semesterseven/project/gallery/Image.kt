@@ -43,6 +43,15 @@ data class ProcessedImageJSON(
     var is_healthy: Boolean,
 )
 
+@Serializable
+data class AnalysedImageJSON(
+    var imageDrawable   : Int       = R.drawable.baseline_question_mark_24,
+    var image           : String?   = null,
+    var score           : Float     = 0F,
+    var advice          : String    = "Default Advice",
+    var is_healthy      : Boolean   = false
+)
+
 fun drawableToBitmap(drawable: Drawable): Bitmap {
     if (drawable is BitmapDrawable) {
         return drawable.bitmap

@@ -15,12 +15,23 @@
             android:layout_height="wrap_content"
             />
 
-        <FrameLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="center"
+            android:padding="64dp"
             >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Network checks"
+                android:textSize="@dimen/page_title_size"
+                android:textStyle="bold"
+                />
+
+            <include layout="@layout/layout_divider"/>
 
             <ImageButton
                 android:id="@+id/btnNetwork"
@@ -32,7 +43,7 @@
                 android:backgroundTint="@color/primary"
                 />
 
-        </FrameLayout>
+        </LinearLayout>
 
         <include layout="@layout/footer_app_footer"/>
 

@@ -1,4 +1,5 @@
 /gitignore
+/storage
 
 *.iml
 .gradle

@@ -4,4 +4,12 @@
     <string name="attribute_developers">Developed by: Mebanseibor</string>
 
     <string name="notes_page_title">Crop Notes</string>
+
+    <string name="homepage_purpose">Your mobile disease diagnosis tool</string>
+    <string name="gallery_purpose">Perform diagnosis on an image</string>
+    <string name="helplines_purpose">Contact authorities for help</string>
+    <string name="notes_purpose">Taking notes</string>
+
+    <string name="dir_images_analysis">images_analysis</string>
+
 </resources>

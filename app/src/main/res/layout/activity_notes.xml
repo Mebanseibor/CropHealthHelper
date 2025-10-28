@@ -22,6 +22,18 @@
                 android:layout_height="wrap_content"
                 />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/notes_purpose"
+                android:textSize="@dimen/content_title_size"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:background="@color/primary"
+                android:padding="@dimen/page_title_padding"
+                />
+
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"

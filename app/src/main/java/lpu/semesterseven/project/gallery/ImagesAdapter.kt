@@ -20,6 +20,40 @@ class ImagesAdapter(private var context: Context, private var images: List<Image
         var cropStateIndicator  : ImageView = itemView.findViewById(R.id.cropStateIndicator)
         var score               : TextView  = itemView.findViewById(R.id.score)
         var advice              : TextView  = itemView.findViewById(R.id.advice)
+
+        fun setData(imageItem: Image){
+            title.text               = imageItem.title
+            score.text               = "Confidence level: ${(imageItem.score*100.00F).toString().substringBeforeLast('.')}%"
+            score.visibility         = View.GONE
+            advice.text              = "Advice: ${imageItem.advice}"
+            var scorePercentageValue: Int    = (imageItem.score*100).toInt()
+
+            if (imageItem.image!=null) image.setImageBitmap(imageItem.image)
+            else image.setImageResource(imageItem.imageDrawable)
+
+            if(!imageItem.is_healthy) {
+                cropStateIndicator.setImageResource(R.drawable.baseline_sick_24)
+                val statusIndicatorColor = ContextCompat.getColor(context, R.color.status_error)
+
+                ImageViewCompat.setImageTintList(
+                    cropStateIndicator,
+                    ColorStateList.valueOf(statusIndicatorColor)
+                )
+            }
+
+            var color: Int
+            if      (scorePercentageValue>=85)  color = R.color.confidence_vhigh
+            else if (scorePercentageValue>=75)  color = R.color.confidence_high
+            else if (scorePercentageValue>=40)  color = R.color.confidence_medium
+            else if (scorePercentageValue>=25)  color = R.color.confidence_low
+            else                                color = R.color.confidence_vlow
+
+            score.setTextColor(context.getResources().getColor(color))
+
+            itemView.setOnClickListener{
+                Toast.makeText(context, "Selected ${imageItem.title}", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImagesViewHolder{
@@ -28,39 +62,13 @@ class ImagesAdapter(private var context: Context, private var images: List<Image
     }
 
     override fun onBindViewHolder(holder: ImagesViewHolder, position: Int){
-        var image: Image                = images[position]
+        var imageItem: Image                = images[position]
 
-        holder.title.text               = image.title
-        holder.score.text               = "Confidence level: ${(image.score*100.00F).toString().substringBeforeLast('.')}%"
-        holder.score.visibility         = View.GONE
-        holder.advice.text              = "Advice: ${image.advice}"
-        var scorePercentageValue: Int    = (image.score*100).toInt()
+        holder.setData(imageItem)
 
-        if (image.image!=null) holder.image.setImageBitmap(image.image)
-        else holder.image.setImageResource(image.imageDrawable)
-
-        if(!image.is_healthy) {
-            holder.cropStateIndicator.setImageResource(R.drawable.baseline_sick_24)
-            val statusIndicatorColor = ContextCompat.getColor(context, R.color.status_error)
-
-            ImageViewCompat.setImageTintList(
-                holder.cropStateIndicator,
-                ColorStateList.valueOf(statusIndicatorColor)
-            )
-        }
-
-        var color: Int
-        if      (scorePercentageValue>=85)  color = R.color.confidence_vhigh
-        else if (scorePercentageValue>=75)  color = R.color.confidence_high
-        else if (scorePercentageValue>=40)  color = R.color.confidence_medium
-        else if (scorePercentageValue>=25)  color = R.color.confidence_low
-        else                                color = R.color.confidence_vlow
-
-        holder.score.setTextColor(context.getResources().getColor(color))
-
-        holder.itemView.setOnClickListener{
-            Toast.makeText(context, "Selected ${image.title}", Toast.LENGTH_SHORT).show()
-        }
+        // saving the file
+        // var file = AnalysedImageJSONFileHandler(context, assignRandomFileName(), imageItem)
+        // file.write()
     }
 
     override fun getItemCount(): Int = images.size
