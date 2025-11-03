@@ -75,4 +75,8 @@
     <color name="text_on_primary">#FFFFFFFF</color> <!-- White text for primary colored backgrounds -->
     <color name="text_on_secondary">#FFFFFFFF</color> <!-- White text for secondary colored backgrounds -->
 
+    <color name="star_background">#CCCCCC</color>
+    <color name="star_foreground">#FFC107</color>
+    <color name="star_secondary">#FF8F00</color>
+
 </resources>

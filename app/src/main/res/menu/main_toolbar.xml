@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_item_ratingbar"
+        android:title="Rating Bar"
+        android:icon="@drawable/baseline_star_24"
+        android:orderInCategory="1"
+        app:showAsAction="always"
+        />
 
     <group
         android:orderInCategory="9" >
 
         <item
-            android:title="Settings"
             android:id="@+id/menu_item_settings"
+            android:title="Settings"
             android:icon="@drawable/baseline_settings_24"
             android:orderInCategory="999"
+            app:showAsAction="always"
             />
 
     </group>

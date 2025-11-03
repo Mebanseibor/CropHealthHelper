@@ -8,6 +8,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingHorizontal="@dimen/app_padding_horizontal"
+        android:background="@drawable/network_background_01"
+        android:backgroundTint="#55000000"
+        android:backgroundTintMode="src_over"
         >
 
         <TextView
@@ -17,6 +20,7 @@
             android:textSize="@dimen/page_title_size"
             android:textStyle="bold"
             android:textAlignment="center"
+            android:textColor="@color/white"
             />
 
         <TextView
@@ -26,6 +30,7 @@
             android:textSize="@dimen/content_title_size"
             android:textStyle="bold"
             android:textAlignment="center"
+            android:textColor="@color/white"
             />
 
         <TextView
@@ -36,6 +41,7 @@
             android:text="Result"
             android:textSize="@dimen/content_title_size"
             android:gravity="center_vertical"
+            android:textColor="@color/white"
             />
 
         <ProgressBar

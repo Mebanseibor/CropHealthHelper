@@ -7,7 +7,9 @@ import android.util.AttributeSet
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import lpu.semesterseven.project.R
+import lpu.semesterseven.project.ratingbar.RatingBarActivity
 import lpu.semesterseven.project.settings.SettingsActivity
 
 open class MainToolBar @JvmOverloads constructor(
@@ -34,12 +36,18 @@ open class MainToolBar @JvmOverloads constructor(
 
         setBackgroundColor(resources.getColor(R.color.primary))
         overflowIcon?.setTint(color)
+
+        for (i in 0..menu.size()-1) menu.getItem(i).setIconTintList(ContextCompat.getColorStateList(context, R.color.white))
     }
 
     fun onOptionsItemSelected(item: MenuItem): Boolean{
         var selectedItem = when(item.itemId){
-            R.id.menu_item_settings ->{
+            R.id.menu_item_settings     ->{
                 context.startActivity(Intent(context, SettingsActivity::class.java))
+                true
+            }
+            R.id.menu_item_ratingbar    -> {
+                context.startActivity(Intent(context, RatingBarActivity::class.java))
                 true
             }
             else -> {

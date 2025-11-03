@@ -11,5 +11,6 @@
     <string name="notes_purpose">Taking notes</string>
 
     <string name="dir_images_analysis">images_analysis</string>
+    <string name="dir_images_clicked">images_clicked</string>
 
 </resources>

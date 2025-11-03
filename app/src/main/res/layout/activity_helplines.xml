@@ -6,6 +6,9 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/helpline_background_01"
+        android:backgroundTint="#55000000"
+        android:backgroundTintMode="src_over"
         >
 
         <lpu.semesterseven.project.components.toolbar.HelpLinesToolBar

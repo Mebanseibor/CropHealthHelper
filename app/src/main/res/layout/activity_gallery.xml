@@ -6,7 +6,11 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/gallery_background_02"
+        android:backgroundTint="#22000000"
+        android:backgroundTintMode="src_over"
+        >
 
         <lpu.semesterseven.project.components.toolbar.GalleryToolBar
             android:id="@+id/toolbar"
@@ -31,6 +35,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
+            android:background="@color/primary"
             >
 
             <TextView
@@ -40,6 +45,7 @@
                 android:textSize="@dimen/content_title_size"
                 android:textStyle="bold"
                 android:textAlignment="center"
+                android:textColor="@color/white"
                 />
 
             <ImageView
@@ -49,6 +55,9 @@
                 android:src="@drawable/baseline_signal_wifi_bad_24"
                 app:tint="@color/status_error"
                 android:padding="8dp"
+                android:background="@color/white"
+                android:backgroundTint="@color/white"
+                android:backgroundTintMode="src_over"
                 />
 
         </LinearLayout>
@@ -58,6 +67,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             >
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/images"
                 android:layout_width="match_parent"
@@ -74,42 +84,48 @@
                 android:padding="120dp"
                 />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintVertical_bias="1"
+                >
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btnSelectImg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:padding="16dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:src="@drawable/baseline_highlight_alt_24"
+                    app:tint="@color/white"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="16dp"
+                    />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btnClickImg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:padding="16dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:src="@drawable/baseline_camera_24"
+                    app:tint="@color/white"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="16dp"
+                    />
+
+            </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            >
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/btnSelectImg"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:padding="16dp"
-                android:layout_marginHorizontal="20dp"
-                android:src="@drawable/baseline_highlight_alt_24"
-                app:tint="@color/white"
-                android:layout_gravity="center"
-                android:layout_marginVertical="16dp"
-                />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/btnClickImg"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:padding="16dp"
-                android:layout_marginHorizontal="20dp"
-                android:src="@drawable/baseline_camera_24"
-                app:tint="@color/white"
-                android:layout_gravity="center"
-                android:layout_marginVertical="16dp"
-                />
-
-        </LinearLayout>
-
     </LinearLayout>
+
 </layout>

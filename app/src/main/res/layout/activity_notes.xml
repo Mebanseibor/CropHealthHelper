@@ -14,6 +14,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/notes_background_02"
+            android:backgroundTint="#55000000"
+            android:backgroundTintMode="src_over"
             >
 
             <lpu.semesterseven.project.components.toolbar.NotesToolBar
