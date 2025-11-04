@@ -34,12 +34,7 @@
 
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
         </activity>
 
         <activity
@@ -90,6 +85,26 @@
         <activity
             android:name=".ratingbar.RatingBarActivity"
             android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".account.LoginActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".account.SignUpActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
     </application>

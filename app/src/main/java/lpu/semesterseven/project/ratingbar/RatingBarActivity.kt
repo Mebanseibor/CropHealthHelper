@@ -6,6 +6,9 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import lpu.semesterseven.project.R
+import lpu.semesterseven.project.dialogs.ACKNOWLEDGEMENT_STATUS_SUCCESS
+import lpu.semesterseven.project.dialogs.promptAcknowledgement
+import java.lang.Thread.sleep
 
 class RatingBarActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +38,14 @@ class RatingBarActivity : AppCompatActivity() {
             val editor = sharedPreferences.edit()
             editor.putFloat(key, rating)
             editor.apply()
-            finish()
+
+            Thread{
+                runOnUiThread {
+                    promptAcknowledgement(this, "Thanks For Rating!", "", ACKNOWLEDGEMENT_STATUS_SUCCESS)
+                }
+                sleep(2000)
+                finish()
+            }.start()
         }
     }
 }
